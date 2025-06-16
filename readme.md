@@ -31,7 +31,7 @@ A simple and interactive movie recommender system built using Streamlit. This ap
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/priteshramani/movie-recommender.git
+   git clone https://github.com/priteshramani/Movie-recommender.git
    cd movie-recommender
    ```
 
