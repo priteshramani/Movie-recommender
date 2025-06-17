@@ -2,20 +2,20 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-from selenium import webdriver
-from bs4 import BeautifulSoup
+# from selenium import webdriver
+# from bs4 import BeautifulSoup
 
-def scrap(title):
-    url=f"https://www.imdb.com/find/?q={title}"
-    driver=webdriver.Chrome()
-    driver.get(url)
-    file_content=driver.page_source
-    driver.close() 
-    soup = BeautifulSoup(file_content, "html.parser")
-    link="https://www.imdb.com"+soup.find("a",attrs={"class":"ipc-metadata-list-summary-item__t"}).get("href")
-    if link==None:
-        link="Not found"  
-    return link
+# def scrap(title):
+#     url=f"https://www.imdb.com/find/?q={title}"
+#     driver=webdriver.Chrome()
+#     driver.get(url)
+#     file_content=driver.page_source
+#     driver.close() 
+#     soup = BeautifulSoup(file_content, "html.parser")
+#     link="https://www.imdb.com"+soup.find("a",attrs={"class":"ipc-metadata-list-summary-item__t"}).get("href")
+#     if link==None:
+#         link="Not found"  
+#     return link
 
 
 # Streamlit UI
@@ -38,8 +38,8 @@ def recommend(title, df=movies, cosine_sim=similarity):
         sim_scores = sim_scores[1:6]  # Get top 5 recommendations
         movie_indices = [i[0] for i in sim_scores]
         movie=[df['title'][i] for i in movie_indices]
-        link=[scrap(title) for title in movie]
-        return pd.DataFrame({"Title":movie,"Link":link})
+        # link=[scrap(title) for title in movie]
+        return pd.DataFrame({"Title":movie})
     except IndexError:
         return "Movie not found."
 
